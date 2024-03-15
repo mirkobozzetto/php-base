@@ -1,0 +1,36 @@
+<div class="col-lg-6 mb-3">
+  <input type="text" class="form-control" placeholder="Votre nom" name="nom" required>
+  <input type="email" class="form-control mt-3" placeholder="Votre email" name="email" required>
+  <input type="text" class="form-control mt-3" placeholder="Votre code postal" name="code_postal">
+  <div class="form-group">
+    <textarea class="form-control mt-3" placeholder="Votre demande ici" name="demande" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-light" form="form1">Envoyer votre demande</button>
+  </div>
+  <form action="#" method="post" id="form1">
+</div>
+<div class="col-lg-6 mb-3">
+  <input type="text" class="form-control" placeholder="Votre prénom" name="prenom" required>
+  <select class="form-select mt-3" name="formation">
+    <option value="">Choisissez une formation</option>
+    <!-- Les options de formations vont ici -->
+  </select>
+  <select class="form-select mt-3" name="centre_formation">
+    <option value="">Choisissez un centre de formations</option>
+    <!-- Les options de centres de formation vont ici -->
+  </select>
+  <div class="form-check mt-3">
+    <input class="form-check-input" type="checkbox" value="inscrit" name="inscrit" id="inscrit">
+    <label class="form-check-label" for="inscrit">Êtes-vous déjà inscrit chez nous?</label>
+  </div>
+  <div class="form-check mt-3">
+    <input class="form-check-input" type="checkbox" value="seance_info" name="seance_info" id="seance_info">
+    <label class="form-check-label" for="seance_info">Êtes-vous déjà venu à une séance
+      d'information?</label>
+  </div>
+  <div class="form-check mt-3">
+    <input class="form-check-input" type="checkbox" value="tests_entree" name="tests_entree" id="tests_entree">
+    <label class="form-check-label" for="tests_entree">Avez-vous réussi les tests d'entrée?</label>
+  </div>
+</div>

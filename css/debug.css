@@ -1,0 +1,14 @@
+pre {
+	/* position: absolute; 
+	top: 0;
+	left: 0;*/
+	background-color: aliceblue;
+	color: darkslateblue;
+	border: 1px solid mediumaquamarine;
+	padding: 3rem 2rem;
+	z-index: 999;
+	margin-bottom: 2rem;
+}
+/* pre code {
+	padding: 1rem;
+} */

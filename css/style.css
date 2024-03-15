@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open sans';
+    background-color: #012E40;
+}
+p {
+	font-size: 1.25rem;
+}
+h1,h2,h3,h4 {
+	font-weight: 900;
+}
+header {
+	margin-bottom: 4rem;
+}
+.bg-nav {
+    background-color: #F2E3D5;
+}
+.nav-link {
+    color: #024959;
+    padding: 0;
+    padding-right: 2rem !important;
+}
+.accent span {
+	color: #F2E3D5;
+	font-weight: 900;
+}
+.condition {
+    color: salmon;
+    text-decoration: underline;
+}
+
+.reponse, #form1 {
+    width: 47%;
+}
+form label {
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+form .form-group {
+    margin-bottom: 1.5rem;
+}
+form .d-flex .form-group {
+    width: 47%;
+}
