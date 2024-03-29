@@ -1,8 +1,17 @@
 <?php
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+
+?>
+
+<?php
 //joli var dump
 function var_dumpj($d, $e = null)
 {
-  echo "<pre><code>";
+  echo "
+<pre><code>";
   if ($e == "e") {
     echo $d;
   } else {
@@ -14,3 +23,4 @@ function var_dumpj($d, $e = null)
   }
   echo "</code></pre>";
 }
+?>
