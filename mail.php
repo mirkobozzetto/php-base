@@ -1,4 +1,8 @@
 <?php
+include 'answer.php'
+?>
+
+<?php
 $mailContent = '
 <!DOCTYPE html>
 <html lang="en">
@@ -287,3 +291,4 @@ $mailContent = '
   </body>
 </html>
 ';
+?>
