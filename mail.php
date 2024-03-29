@@ -77,7 +77,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Dickinson
+                ' . $infosForm["nom"] . '
               </td>
             </tr>
             <tr>
@@ -99,7 +99,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Elena-Alina
+                ' . $infosForm["prenom"] . '
               </td>
             </tr>
             <tr>
@@ -122,9 +122,9 @@ $mailContent = '
                 "
               >
                 <a
-                  href="mailto:elena@fj.be"
+                  href="mailto: ' . $infosForm["email"] . ' "
                   style="color: #f1e4d5; text-decoration: underline"
-                  >elena@fj.be</a
+                  >' . $infosForm["email"] . '</a
                 >
               </td>
             </tr>
@@ -147,7 +147,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Webdeveloper
+                ' . $infosForm["formation"] . '
               </td>
             </tr>
             <tr>
@@ -169,7 +169,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                1060
+                ' . $infosForm["code_postal"] . '
               </td>
             </tr>
             <tr>
@@ -191,7 +191,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                FIJ Saint-Gilles
+                ' . $infosForm["centre_formation"] . '
               </td>
             </tr>
             <tr>
@@ -213,7 +213,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Oui / Non
+                ' . (isset($infosForm["seance_information"]) ? 'Oui' : 'Non') . '
               </td>
             </tr>
             <tr>
@@ -235,7 +235,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Oui / Non
+                ' . (isset($infosForm["seance_information"]) ? 'Oui' : 'Non') . '
               </td>
             </tr>
             <tr>
@@ -257,7 +257,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Oui / Non
+                ' . (isset($infosForm["tests_entree"]) ? 'Oui' : 'Non') . '
               </td>
             </tr>
             <tr>
@@ -279,11 +279,7 @@ $mailContent = '
                   border: 1px solid #f1e4d5;
                 "
               >
-                Bonjour, Lorem, ipsum dolor sit, amet consectetur adipiscing
-                elit. Laudantium asperiores distinctio, dolore cupiditate
-                voluptatum! Voluptates voluptatum obcaecati aut quas, fuga
-                similique porro autem dolorum reprehenderit quia expedita
-                aliquid sequi debitis?
+                ' . $infosForm["demande"] . '
               </td>
             </tr>
           </table>
