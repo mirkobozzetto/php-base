@@ -1,4 +1,7 @@
 <?php
+
+use Random\Engine\Secure;
+
 include "header.php";
 include "mail.php";
 include "functions.php";
@@ -16,16 +19,35 @@ include "functions.php";
   </div>
 </div>
 
+<?php
+$infosForm = array();
+foreach ($_GET as $key => $value) {
+  if (is_array($value)) {
+    foreach ($value as $key2 => $value2) {
+      $value2 = secur($value2);
+      $value[$key2] = $value2;
+    }
+  } else {
+    $value = secur($value);
+  }
+  $infosForm[$key] = $value;
+}
+?>
+
 <!--  -->
 <?php
 // multiple recipients
-$to  = 'mirkouch@gmail.com' . ', '; // note the comma
-$to .= 'mirkouch@gmail.com';
+$to  = 'mirkouch@gmail.com' . ', ';
+$to .= 'elena@fij.be';
 
 // subject
 $subject = 'Demande d\'information';
 // $demande = '<p>Bonjour,<br>' . $_GET["nom"] . ' vous a contacté.</p>';
+
+
+// * message
 $demande = $mailContent;
+
 // To send HTML mail, the Content-type header must be set
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";

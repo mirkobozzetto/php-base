@@ -1,9 +1,11 @@
 <?php
-$data = trim($data);
-$data = stripslashes($data);
-$data = htmlspecialchars($data);
-return $data;
-
+function secur($data)
+{
+  $data = trim($data); // enlever tous les espaces comme tabs ou plusieurs espaces d'affilé
+  $data = stripslashes($data); // enlever les backslashes ou \\ deviennent des \
+  $data = htmlspecialchars($data); // convertis les caractères spéciaux en balises HTML
+  return $data;
+}
 ?>
 
 <?php
