@@ -1,10 +1,12 @@
 <?php
-function secur($data)
-{
-  $data = trim($data); // enlever tous les espaces comme tabs ou plusieurs espaces d'affilé
-  $data = stripslashes($data); // enlever les backslashes ou \\ deviennent des \
-  $data = htmlspecialchars($data); // convertis les caractères spéciaux en balises HTML
-  return $data;
+if (!function_exists('secur')) {
+  function secur($data)
+  {
+    $data = trim($data); // enlever tous les espaces comme tabs ou plusieurs espaces d'affilé
+    $data = stripslashes($data); // enlever les backslashes ou \\ deviennent des \
+    $data = htmlspecialchars($data); // convertis les caractères spéciaux en balises HTML
+    return $data;
+  }
 }
 ?>
 

@@ -1,10 +1,7 @@
 <?php
 
-use Random\Engine\Secure;
-
 include "header.php";
 include "mail.php";
-include "functions.php";
 ?>
 
 <div class="container">
