@@ -52,8 +52,7 @@ include "header.php";
                 d'information?</label>
             </div>
             <div class="form-check mt-3">
-              <input class="form-check-input" type="checkbox" value="tests_entree" name="tests_entree"
-                id="tests_entree">
+              <input class="form-check-input" type="checkbox" value="tests_entree" name="tests_entree" id="tests_entree">
               <label class="form-check-label" for="tests_entree">Avez-vous réussi les tests d'entrée?</label>
             </div>
             <div class="col-12">

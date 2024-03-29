@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+include "mail.php";
 ?>
 <div class="container">
   <div class="row mb-5">
@@ -19,7 +20,8 @@ include "header.php";
 
         // subject
         $subject = 'Demande d\'information';
-        $demande = '<p>Bonjour,<br>' . $_GET["nom"] . ' vous a contacté.</p>';
+        // $demande = '<p>Bonjour,<br>' . $_GET["nom"] . ' vous a contacté.</p>';
+        $demande = $mailContent;
         // To send HTML mail, the Content-type header must be set
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
@@ -32,14 +34,15 @@ include "header.php";
 
         // Mail it
         mail($to, $subject, $demande, $headers);
-        setcookie($cookieName, base64_encode(json_encode($infosForm)), time() + (86400 * $cookieDuration), '/');
+        // setcookie($cookieName, base64_encode(json_encode($infosForm)), time() + (86400 * $cookieDuration), '/');
         ?>
 
 
         <!--  -->
         <!-- <?php
               var_dumpj($_POST);
-              $to = "mirkouch@gmail.com";
+              $to = 'mirkouch@gmail.com' . ', ';
+              $to .= "elena@fij.be";
               $subject = "Nouvelle demande de formulaire";
               $message = "";
 
