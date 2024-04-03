@@ -348,23 +348,23 @@ mail($to, $subject, $demande, $headers);
 
 <!--  -->
 <!-- <?php
-      var_dumpj($_POST);
-      $to = 'mirkouch@gmail.com' . ', ';
-      $to .= "elena@fij.be";
-      $subject = "Nouvelle demande de formulaire";
-      $message = "";
+      // var_dumpj($_POST);
+      // $to = 'mirkouch@gmail.com' . ', ';
+      // $to .= "elena@fij.be";
+      // $subject = "Nouvelle demande de formulaire";
+      // $message = "";
 
-      foreach ($_POST as $key => $value) {
-        $message .= "$key: $value\n";
-      }
+      // foreach ($_POST as $key => $value) {
+      //   $message .= "$key: $value\n";
+      // }
 
-      $headers = "From: noreply@yourwebsite.com";
+      // $headers = "From: noreply@yourwebsite.com";
 
-      if (mail($to, $subject, $message, $headers)) {
-        echo "Email envoyé avec succès";
-      } else {
-        echo "L'envoi de l'email a échoué";
-      }
+      // if (mail($to, $subject, $message, $headers)) {
+      //   echo "Email envoyé avec succès";
+      // } else {
+      //   echo "L'envoi de l'email a échoué";
+      // }
       ?> -->
 <!--  -->
 <!-- </div>
