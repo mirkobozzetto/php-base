@@ -1,7 +1,5 @@
 <?php
-
 include "header.php";
-include "mail.php";
 ?>
 
 <div class="container">
