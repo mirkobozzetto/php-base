@@ -16,7 +16,7 @@ include "header.php";
 
 <?php
 $infosForm = array();
-foreach ($_GET as $key => $value) {
+foreach ($_POST as $key => $value) {
   if (is_array($value)) {
     foreach ($value as $key2 => $value2) {
       $value2 = secur($value2);
