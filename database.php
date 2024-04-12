@@ -1,6 +1,14 @@
 <?php
 include "header.php";
+include "database-content.php";
+$connection = mysqli_connect($hostDB, $userDB, $passDB, $nameDB);
+// Check connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+$query = mysqli_query($connection, "SELECT * FROM stagiaires");
 ?>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -45,8 +53,26 @@ include "header.php";
               </tr>
             </thead>
             <tbody>
+
               <?php
-# ici votre contenu de la base de données
+while ($row = mysqli_fetch_assoc($query)) {
+    ?>
+              <tr>
+                <td>
+                  <?php echo $row['id']; ?>
+                </td>
+                <td>
+                  <?php echo $row['nom']; ?>
+                </td>
+                <td>
+                  <?php echo $row['annee']; ?>
+                </td>
+                <td>
+                  <?php echo $row['formation']; ?>
+                </td>
+              </tr>
+              <?php
+}
 ?>
             </tbody>
           </table>
