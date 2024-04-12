@@ -1,48 +1,55 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Open sans';
-    background-color: #012E40;
+  font-family: "Open sans";
+  background-color: #012e40;
 }
 p {
-	font-size: 1.25rem;
+  font-size: 1.25rem;
 }
-h1,h2,h3,h4 {
-	font-weight: 900;
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 900;
 }
 header {
-	margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 .bg-nav {
-    background-color: #F2E3D5;
+  background-color: #f2e3d5;
 }
 .nav-link {
-    color: #024959;
-    padding: 0;
-    padding-right: 2rem !important;
+  color: #024959;
+  padding: 0;
+  padding-right: 2rem !important;
 }
 .accent span {
-	color: #F2E3D5;
-	font-weight: 900;
+  color: #f2e3d5;
+  font-weight: 900;
 }
 .condition {
-    color: salmon;
-    text-decoration: underline;
+  color: salmon;
+  text-decoration: underline;
 }
 
-.reponse, #form1 {
-    width: 47%;
+.reponse,
+#form1 {
+  width: 47%;
 }
 form label {
-    margin-bottom: .5rem;
-    font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 form .form-group {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 form .d-flex .form-group {
-    width: 47%;
+  width: 47%;
+}
+.active {
+  color: salmon !important;
 }
