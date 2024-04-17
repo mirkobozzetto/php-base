@@ -23,10 +23,15 @@ if ($_POST) {
     $nom_complet = $infosForm['nom'] . ' ' . $infosForm['prenom'];
     $insert = "INSERT INTO stagiaires (nom, annee, formation) VALUES ('" . $nom_complet . "', '" . $infosForm['annee'] . "', '" . $infosForm['formation'] . "')";
     if (mysqli_query($connection, $insert)) {
+        setcookie('infosForm', serialize($infosForm), time() + (86400 * 30), "/");
         echo '<div class="alert alert-success" role="alert">New record created successfully</div>';
     } else {
         echo '<div class="alert alert-danger" role="alert">Error: ' . $insert . '<br>' . mysqli_error($connection) . '</div>';
     }
+}
+if (isset($_COOKIE['infosForm'])) {
+    $infosFormFromCookie = unserialize($_COOKIE['infosForm']);
+    // var_dumpj($infosFormFromCookie);
 }
 ?>
 
