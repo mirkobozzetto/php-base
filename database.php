@@ -6,7 +6,28 @@ $connection = mysqli_connect($hostDB, $userDB, $passDB, $nameDB);
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$query = mysqli_query($connection, "SELECT * FROM stagiaires");
+if ($_POST) {
+    $infosForm = [];
+    foreach ($_POST as $key => $value) {
+        if (is_array($value)) {
+            foreach ($value as $key2 => $value2) {
+                $value2 = secur($value2);
+                $value[$key2] = $value2;
+            }
+        } else {
+            $value = secur($value);
+        }
+        $infosForm[$key] = $value;
+    }
+    // var_dumpj($infosForm);
+    $nom_complet = $infosForm['nom'] . ' ' . $infosForm['prenom'];
+    $insert = "INSERT INTO stagiaires (nom, annee, formation) VALUES ('" . $nom_complet . "', '" . $infosForm['annee'] . "', '" . $infosForm['formation'] . "')";
+    if (mysqli_query($connection, $insert)) {
+        echo '<div class="alert alert-success" role="alert">New record created successfully</div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Error: ' . $insert . '<br>' . mysqli_error($connection) . '</div>';
+    }
+}
 ?>
 
 <div class="container">
@@ -18,18 +39,18 @@ $query = mysqli_query($connection, "SELECT * FROM stagiaires");
         <form action="#" method="post" id="form3">
           <div class="d-flex">
             <div class="form-group me-3">
-              <input class="form-control" type="text" name="nom" id="nom" placeholder="Nom" value="">
+              <input class="form-control" type="text" name="nom" id="nom" placeholder="Nom" value="" required>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="prenom" id="prenom" placeholder="Prénom" value="">
+              <input class="form-control" type="text" name="prenom" id="prenom" placeholder="Prénom" value="" required>
             </div>
           </div>
           <div class="d-flex">
             <div class="form-group me-3">
-              <input class="form-control" type="number" name="annee" id="annee" placeholder="Année" value="">
+              <input class="form-control" type="number" name="annee" id="annee" placeholder="Année" value="" required>
             </div>
             <div class="form-group">
-              <select class="form-select" name="formation" id="formation" aria-label="Formation">
+              <select class="form-select" name="formation" id="formation" aria-label="Formation" required>
                 <option selected>Choisissez votre formation</option>
                 <option value="Webdesigner">Webdesigner</option>
                 <option value="Webdeveloper">Webdeveloper</option>
@@ -55,6 +76,7 @@ $query = mysqli_query($connection, "SELECT * FROM stagiaires");
             <tbody>
 
               <?php
+$query = mysqli_query($connection, "SELECT * FROM stagiaires");
 while ($row = mysqli_fetch_assoc($query)) {
     ?>
               <tr>
