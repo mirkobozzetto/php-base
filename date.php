@@ -71,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date   = $_POST['date'];
     $cours  = $_POST['cours'];
     $dateFR = dateFR();
-    echo '<pre>';
-    var_dump($nom);
-    var_dump($dateFR);
-    var_dump($cours);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($nom);
+    // var_dump($dateFR);
+    // var_dump($cours);
+    // echo '</pre>';
 }
 ?>
           </form>
@@ -84,10 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="profil d-flex bg-light text-dark p-3">
               <img class="w-25" src="https://www.fij.be/wp-content/themes/fij/images/logo_fij.svg" alt="profil">
               <div class="coordonnees ps-5 d-flex flex-column align-items-start justify-content-center">
-                <p class="mb-1"><strong>Nom : </strong><u>DOE</u></p>
-                <p class="mb-0"><strong>Inscrit au cours de : </strong> <u>SEO</u></p>
-                <p class="mb-1"><strong>Date d'inscription</strong> : <br><u>11 Avril 2024 à 03h30</u></p>
-
+                <p class="mb-1"><strong>Nom : </strong><u><?php echo isset($nom) ? $nom : ''; ?></u></p>
+                <p class="mb-0"><strong>Inscrit au cours de : </strong>
+                  <u><?php echo isset($cours) ? $cours : ''; ?></u>
+                </p>
+                <p class="mb-1"><strong>Date d'inscription</strong> :
+                  <br><u><?php echo isset($dateFR) ? $dateFR : ''; ?></u>
+                </p>
               </div>
             </div>
 
