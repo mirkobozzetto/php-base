@@ -27,23 +27,24 @@ include "functions.php";
           <ul class="navbar-nav">
             <?php
 $menu = [
- [ "href" => "variables.php", "content" => "Variables" ],
- [ "href" => "if.php", "content" => "If" ],
- [ "href" => "arrays.php", "content" => "Arrays" ],
- [ "href" => "form1.php", "content" => "1 page form" ],
- [ "href" => "form2.php", "content" => "2 pages form" ],
- [ "href" => "database.php", "content" => "Database" ],
- ];
+  ["href" => "variables.php", "content" => "Variables"],
+  ["href" => "if.php", "content" => "If"],
+  ["href" => "arrays.php", "content" => "Arrays"],
+  ["href" => "form1.php", "content" => "1 page form"],
+  ["href" => "form2.php", "content" => "2 pages form"],
+  ["href" => "database.php", "content" => "Database"],
+  ["href" => "date.php", "content" => "Date"],
+];
 
-$current_page = basename($_SERVER[ 'PHP_SELF' ]);
+$current_page = basename($_SERVER['PHP_SELF']);
 // var_dumpj($current_page);
 
 foreach ($menu as $key => $value) {
- $active_class = ($value[ "href" ] == $current_page) ? 'active' : '';
- ?>
+  $active_class = ($value["href"] == $current_page) ? 'active' : '';
+  ?>
             <li class="nav-item">
-              <a class="nav-link  <?php echo $active_class; ?>" href="<?php echo $value[ "href" ]; ?>">
-                <?php echo $value[ "content" ]; ?>
+              <a class="nav-link  <?php echo $active_class; ?>" href="<?php echo $value["href"]; ?>">
+                <?php echo $value["content"]; ?>
               </a>
             </li>
             <?php
