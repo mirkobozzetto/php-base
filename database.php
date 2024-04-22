@@ -40,12 +40,12 @@ if (isset($_COOKIE['infosForm'])) {
 }
 if (isset($_SESSION['success_message'])) {
   echo '<div class="alert alert-success" role="alert">' . $_SESSION['success_message'] . '</div>';
-  unset($_SESSION['success_message']); // N'oubliez pas de supprimer le message de la session une fois qu'il a été affiché
+  unset($_SESSION['success_message']);
 }
 
 if (isset($_SESSION['error_message'])) {
   echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error_message'] . '</div>';
-  unset($_SESSION['error_message']); // N'oubliez pas de supprimer le message de la session une fois qu'il a été affiché
+  unset($_SESSION['error_message']);
 }
 ?>
 
