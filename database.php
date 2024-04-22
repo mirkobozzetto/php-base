@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "header.php";
 include "database-content.php";
 $connection = mysqli_connect($hostDB, $userDB, $passDB, $nameDB);
@@ -23,17 +24,28 @@ if ($_POST) {
   $nom_complet = $infosForm['nom'] . ' ' . $infosForm['prenom'];
   $insert      = "INSERT INTO stagiaires (nom, annee, formation) VALUES ('" . $nom_complet . "', '" . $infosForm['annee'] . "', '" . $infosForm['formation'] . "')";
   if (mysqli_query($connection, $insert)) {
-    echo '<div class="alert alert-success" role="alert">New record created successfully</div>';
     setcookie('infosForm', serialize($infosForm), time() + (86400 * 30), "/");
+    $_SESSION['success_message'] = "New record created successfully";
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit();
   } else {
-    echo '<div class="alert alert-danger" role="alert">Error: ' . $insert . '<br>' . mysqli_error($connection) . '</div>';
+    $_SESSION['error_message'] = 'Error: ' . $insert . '<br>' . mysqli_error($connection);
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
   }
 }
 if (isset($_COOKIE['infosForm'])) {
   $infosFormFromCookie = unserialize($_COOKIE['infosForm']);
   // var_dumpj($infosFormFromCookie);
+}
+if (isset($_SESSION['success_message'])) {
+  echo '<div class="alert alert-success" role="alert">' . $_SESSION['success_message'] . '</div>';
+  unset($_SESSION['success_message']); // N'oubliez pas de supprimer le message de la session une fois qu'il a été affiché
+}
+
+if (isset($_SESSION['error_message'])) {
+  echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error_message'] . '</div>';
+  unset($_SESSION['error_message']); // N'oubliez pas de supprimer le message de la session une fois qu'il a été affiché
 }
 ?>
 
