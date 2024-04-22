@@ -4,34 +4,36 @@ include "database-content.php";
 $connection = mysqli_connect($hostDB, $userDB, $passDB, $nameDB);
 // Check connection
 if (!$connection) {
- die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 if ($_POST) {
- $infosForm = [  ];
- foreach ($_POST as $key => $value) {
-  if (is_array($value)) {
-   foreach ($value as $key2 => $value2) {
-    $value2         = secur($value2);
-    $value[ $key2 ] = $value2;
-   }
-  } else {
-   $value = secur($value);
+  $infosForm = [];
+  foreach ($_POST as $key => $value) {
+    if (is_array($value)) {
+      foreach ($value as $key2 => $value2) {
+        $value2       = secur($value2);
+        $value[$key2] = $value2;
+      }
+    } else {
+      $value = secur($value);
+    }
+    $infosForm[$key] = $value;
   }
-  $infosForm[ $key ] = $value;
- }
- // var_dumpj($infosForm);
- $nom_complet = $infosForm[ 'nom' ] . ' ' . $infosForm[ 'prenom' ];
- $insert      = "INSERT INTO stagiaires (nom, annee, formation) VALUES ('" . $nom_complet . "', '" . $infosForm[ 'annee' ] . "', '" . $infosForm[ 'formation' ] . "')";
- if (mysqli_query($connection, $insert)) {
-  setcookie('infosForm', serialize($infosForm), time() + (86400 * 30), "/");
-  echo '<div class="alert alert-success" role="alert">New record created successfully</div>';
- } else {
-  echo '<div class="alert alert-danger" role="alert">Error: ' . $insert . '<br>' . mysqli_error($connection) . '</div>';
- }
+  // var_dumpj($infosForm);
+  $nom_complet = $infosForm['nom'] . ' ' . $infosForm['prenom'];
+  $insert      = "INSERT INTO stagiaires (nom, annee, formation) VALUES ('" . $nom_complet . "', '" . $infosForm['annee'] . "', '" . $infosForm['formation'] . "')";
+  if (mysqli_query($connection, $insert)) {
+    echo '<div class="alert alert-success" role="alert">New record created successfully</div>';
+    setcookie('infosForm', serialize($infosForm), time() + (86400 * 30), "/");
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
+  } else {
+    echo '<div class="alert alert-danger" role="alert">Error: ' . $insert . '<br>' . mysqli_error($connection) . '</div>';
+  }
 }
-if (isset($_COOKIE[ 'infosForm' ])) {
- $infosFormFromCookie = unserialize($_COOKIE[ 'infosForm' ]);
- // var_dumpj($infosFormFromCookie);
+if (isset($_COOKIE['infosForm'])) {
+  $infosFormFromCookie = unserialize($_COOKIE['infosForm']);
+  // var_dumpj($infosFormFromCookie);
 }
 ?>
 
@@ -44,48 +46,42 @@ if (isset($_COOKIE[ 'infosForm' ])) {
         <form action="#" method="post" id="form3">
           <div class="d-flex">
             <div class="form-group me-3">
-              <input class="form-control" type="text" name="nom" id="nom" placeholder="Nom" value="<?php if (isset($infosFormFromCookie[ 'nom' ])) {
- echo $infosFormFromCookie[ 'nom' ];
+              <input class="form-control" type="text" name="nom" id="nom" placeholder="Nom" value="<?php if (isset($infosFormFromCookie['nom'])) {
+  echo $infosFormFromCookie['nom'];
 }
-;?>" required>
+; ?>" required>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?php if (isset($infosFormFromCookie[ 'nom' ])) {
- echo $infosFormFromCookie[ 'prenom' ];
+              <input class="form-control" type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?php if (isset($infosFormFromCookie['nom'])) {
+  echo $infosFormFromCookie['prenom'];
 }
-;?>" required>
+; ?>" required>
             </div>
           </div>
           <div class="d-flex">
             <div class="form-group me-3">
-              <input class="form-control" type="number" name="annee" id="annee" placeholder="Année" value="<?php if (isset($infosFormFromCookie[ 'nom' ])) {
- echo $infosFormFromCookie[ 'annee' ];
+              <input class="form-control" type="number" name="annee" id="annee" placeholder="Année" value="<?php if (isset($infosFormFromCookie['nom'])) {
+  echo $infosFormFromCookie['annee'];
 }
-;?>" required>`
+; ?>" required>`
             </div>
             <div class="form-group">
-
+              <!--  -->
+              <?php
+$formations = ['Webdesigner', 'Webdeveloper', 'Technicien·ne', 'Français langue étrangère'];
+?>
+              <!--  -->
               <select class="form-select" name="formation" id="formation" aria-label="Formation" required>
-                <option <?php if (!isset($infosFormFromCookie[ 'formation' ])) {
- echo 'selected';
-}?>>Choisissez votre formation</option>
-
-                <option value="<?php echo str_replace('·', '', 'Webdesigner'); ?>" <?php if (isset($infosFormFromCookie[ 'formation' ]) && $infosFormFromCookie[ 'formation' ] == 'Webdesigner') {
- echo 'selected';
-}?>>Webdesigner</option>
-
-                <option value="<?php echo str_replace('·', '', 'Webdeveloper'); ?>" <?php if (isset($infosFormFromCookie[ 'formation' ]) && $infosFormFromCookie[ 'formation' ] == 'Webdeveloper') {
- echo 'selected';
-}?>>Webdeveloper</option>
-
-                <option value="<?php echo str_replace('·', '', 'Technicien·ne'); ?>" <?php if (isset($infosFormFromCookie[ 'formation' ]) && $infosFormFromCookie[ 'formation' ] == 'Technicien·ne') {
- echo 'selected';
-}?>>Technicien·ne</option>
-
-                <option value="<?php echo str_replace('·', '', 'Français langue étrangère'); ?>" <?php if (isset($infosFormFromCookie[ 'formation' ]) && $infosFormFromCookie[ 'formation' ] == 'Français langue étrangère') {
- echo 'selected';
-}?>>Français langue étrangère</option>
+                <option <?php if (!isset($infosFormFromCookie['formation'])) {echo 'selected';} ?>>Choisissez votre
+                  formation</option>
+                <!--  -->
+                <?php foreach ($formations as $formation): ?>
+                <option value="<?php echo str_replace('·', '', $formation); ?>"
+                  <?php if (isset($infosFormFromCookie['formation']) && $formation == $infosFormFromCookie['formation']) {echo 'selected';} ?>>
+                  <?php echo $formation; ?></option>
+                <?php endforeach; ?>
               </select>
+              <!--  -->
             </div>
           </div>
           <div class="form-group">
@@ -107,19 +103,19 @@ if (isset($_COOKIE[ 'infosForm' ])) {
               <?php
 $query = mysqli_query($connection, "SELECT * FROM stagiaires");
 while ($row = mysqli_fetch_assoc($query)) {
- ?>
+  ?>
               <tr>
                 <td>
-                  <?php echo $row[ 'id' ]; ?>
+                  <?php echo $row['id']; ?>
                 </td>
                 <td>
-                  <?php echo $row[ 'nom' ]; ?>
+                  <?php echo $row['nom']; ?>
                 </td>
                 <td>
-                  <?php echo $row[ 'annee' ]; ?>
+                  <?php echo $row['annee']; ?>
                 </td>
                 <td>
-                  <?php echo $row[ 'formation' ]; ?>
+                  <?php echo $row['formation']; ?>
                 </td>
               </tr>
               <?php
