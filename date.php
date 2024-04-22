@@ -4,14 +4,14 @@ include "header.php";
 function dateFR()
 {
     $date = new DateTime();
-    $date->setTimezone(new DateTimeZone('Europe/Paris'));
+    $date->setTimestamp(strtotime($_POST['date']));
     $jour    = $date->format('l');
     $jourNum = $date->format('d');
     $mois    = $date->format('F');
     $annee   = $date->format('Y');
     $heure   = $date->format('H');
     $minute  = $date->format('i');
-    $seconde = $date->format('s');
+    // $seconde = $date->format('s');
 
     $joursEN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
     $joursFR = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
@@ -25,13 +25,12 @@ function dateFR()
     if ($minute != "00") {
         $phraseDate .= " $minute minutes";
     }
-    if ($seconde != "00") {
-        $phraseDate .= " et $seconde secondes";
-    }
+    // if ($seconde != "00") {
+    //     $phraseDate .= " et $seconde secondes";
+    // }
 
     return $phraseDate;
 }
-?>
 ?>
 
 
